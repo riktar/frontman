@@ -1,0 +1,21 @@
+import React, { useEffect } from "react";
+import { observer } from "mobx-react-lite";
+import { useStore } from "store";
+import classes from "./styles.module.css";
+
+const {{name}} = observer((props) => {
+  const { layout } = useStore();
+  useEffect(() => {
+    layout.setCurrentPage("{{name}}");
+  }, []);
+
+  return (
+    <>
+      <div className={classes.root}>
+        {layout.currentPage}
+      </div>
+    </>
+  );
+});
+
+export default {{name}};

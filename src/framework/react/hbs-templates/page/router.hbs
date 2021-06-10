@@ -1,0 +1,13 @@
+import React from "react";
+{{#each routes}}
+import {{this.key}} from "pages/{{this.key}}";
+{{/each}}
+import jsonRoutes from "./router.json";
+
+const routes = jsonRoutes.map((x) => ({
+  ...x,
+  component: React.createElement(eval(x.key), {})
+}));
+
+
+export { routes };
