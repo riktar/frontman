@@ -5,7 +5,11 @@ const ora = require("ora");
 const inquirer = require("inquirer");
 const path = require("path");
 const { capitalizeFirstLetter, toValidPackageName } = require("../utils/fns");
-const { generateComponent, generatePage, generateRoute } = require("../utils/generate.utils");
+const {
+  generateComponent,
+  generatePage,
+  generateRoute,
+} = require("../utils/generate.utils");
 
 class GenerateCommand extends Command {
   async run() {
@@ -19,7 +23,7 @@ class GenerateCommand extends Command {
     const config = require(path.join(process.cwd(), "frontman.config.js"));
     const { framework } = config;
     const { type } = args;
-    const capType = capitalizeFirstLetter(type)
+    const capType = capitalizeFirstLetter(type);
 
     // get name
     const name =
@@ -31,12 +35,12 @@ class GenerateCommand extends Command {
             name: "name",
             message: "Component name:",
             default: `Frontman${capType}`,
-            validate: (val) => !!val
+            validate: (val) => !!val,
           },
         ])
       )["name"];
 
-      // template dir
+    // template dir
     const templateDir = path.join(
       __dirname,
       `../framework/${framework}/hbs-templates`
@@ -55,12 +59,11 @@ class GenerateCommand extends Command {
               name: "route",
               message: "Insert the route (start with /):",
               default: `/${toValidPackageName(name)}`,
-              validate: (val) => !!val && val[0] === '/'
-              
+              validate: (val) => !!val && val[0] === "/",
             },
           ])
         )["route"];
-        generateRoute(name, route, config, templateDir)
+        generateRoute(name, route, config, templateDir);
         break;
       default:
         this.log(`${chalk.red("✖")} type not valid`);

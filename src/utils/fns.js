@@ -34,7 +34,6 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-
 function copyDir(srcDir, destDir) {
   fs.mkdirSync(destDir, { recursive: true });
   for (const file of fs.readdirSync(srcDir)) {
@@ -93,5 +92,5 @@ module.exports = {
   execShellCommand,
   write,
   read,
-  capitalizeFirstLetter
+  capitalizeFirstLetter,
 };

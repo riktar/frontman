@@ -29,7 +29,7 @@ class InitCommand extends Command {
             name: "name",
             message: "Project name:",
             default: "frontman-project",
-            validate: (val) => !!val
+            validate: (val) => !!val,
           },
         ])
       )["name"];
