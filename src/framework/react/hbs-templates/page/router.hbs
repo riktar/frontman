@@ -4,9 +4,15 @@ import {{this.key}} from "pages/{{this.key}}";
 {{/each}}
 import jsonRoutes from "./router.json";
 
+const Component = {
+  {{#each routes}}
+    {{this.key}},
+  {{/each}}
+}
+
 const routes = jsonRoutes.map((x) => ({
   ...x,
-  component: React.createElement(eval(x.key), {})
+  component: React.createElement(Component[x.key], {})
 }));
 
 
