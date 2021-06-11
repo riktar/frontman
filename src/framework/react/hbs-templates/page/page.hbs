@@ -1,21 +1,20 @@
 import React, { useEffect } from "react";
-import { observer } from "mobx-react-lite";
-import { useStore } from "store";
+import { pageNameState } from "store/atoms";
+import { useRecoilState } from "recoil";
 import classes from "./styles.module.css";
 
-const {{name}} = observer((props) => {
-  const { layout } = useStore();
+const {{name}} = (props) => {
+  const [pageName, setPageName] = useRecoilState(pageNameState)
   useEffect(() => {
-    layout.setCurrentPage("{{name}}");
+    setPageName("{{name}}");
   }, []);
-
   return (
     <>
       <div className={classes.root}>
-        {layout.currentPage}
+        {pageName}
       </div>
     </>
   );
-});
+};
 
 export default {{name}};

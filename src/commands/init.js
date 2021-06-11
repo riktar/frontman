@@ -87,7 +87,7 @@ class InitCommand extends Command {
               {
                 name: `${chalk.bold.yellow(
                   "Default App"
-                )} - SPA using Vite, Tailwind, React Router and MobX State Tree`,
+                )} - Fast SPA using Vite, Tailwind, React Router, SWR and Recoil`,
                 value: "spa-base",
               },
             ],

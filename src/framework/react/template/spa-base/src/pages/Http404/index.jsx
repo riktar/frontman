@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
-import { observer } from "mobx-react-lite";
-import { useStore } from "store";
 import classes from "./styles.module.css";
 import { Link } from "react-router-dom";
+import { useSetRecoilState, useRecoilValue } from "recoil";
+import { pageNameState, activeUserState } from "store/atoms";
+import PageName from "components/PageName";
 
-const Http404 = observer((props) => {
-  const { layout } = useStore();
+const Http404 = (props) => {
+  const setPageName = useSetRecoilState(pageNameState);
+  const activeUser = useRecoilValue(activeUserState);
   useEffect(() => {
-    layout.setCurrentPage("Not Found");
+    setPageName("Not Found");
   }, []);
 
   return (
@@ -21,10 +23,14 @@ const Http404 = observer((props) => {
               <span className="text-green-500">Home</span>
             </Link>
           </p>
+          <PageName />
+          <p className="mt-10">
+            <strong>User Recoil:</strong> {activeUser.name} {activeUser.surname}
+          </p>
         </div>
       </div>
     </>
   );
-});
+};
 
 export default Http404;

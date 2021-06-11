@@ -5,8 +5,7 @@ import jsonRoutes from "./router.json";
 
 const routes = jsonRoutes.map((x) => ({
   ...x,
-  component: React.createElement(eval(x.key), {})
+  component: React.createElement(eval(x.key), {}),
 }));
-
 
 export { routes };

@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
-import { observer } from "mobx-react-lite";
-import { useStore } from "store";
+import { pageNameState, activeUserState } from "store/atoms";
+import { useSetRecoilState, useRecoilValue } from "recoil";
+import PageName from "../../components/PageName";
 import classes from "./styles.module.css";
+import { Link } from "react-router-dom";
 
-const Home = observer((props) => {
-  const { layout } = useStore();
+const Home = (props) => {
+  const setPageName = useSetRecoilState(pageNameState);
+  const activeUser = useRecoilValue(activeUserState);
   useEffect(() => {
-    layout.setCurrentPage("Home");
+    setPageName("Home");
   }, []);
 
   return (
@@ -17,10 +20,20 @@ const Home = observer((props) => {
           <h2 className={classes.subtitle}>
             Powered by <strong className="text-green-600">Frontman</strong>
           </h2>
+          <PageName />
+          <p className="mt-10">
+            <Link to={"/aaa"}>
+              <span className="text-indigo-500">Go to "Not Found" Page</span>
+            </Link>
+          </p>
+
+          <p className="mt-10">
+            <strong>User Recoil:</strong> {activeUser.name} {activeUser.surname}
+          </p>
         </div>
       </div>
     </>
   );
-});
+};
 
 export default Home;
