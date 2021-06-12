@@ -106,23 +106,17 @@ class InitCommand extends Command {
       fs.mkdirSync(targetDir);
     }
 
-    // define template folder path
-    const templateDir = path.join(
-      __dirname,
-      `../framework/${framework}/template/${template}`
-    );
-
     // start!
     this.log();
     const spinner = ora(`Scaffolding project in ${chalk.cyan(root)}`).start();
 
+    // degit the repo
     await execShellCommand(`npx degit ${template} ${root}`);
 
-    // copy folder from template path to destination path
-    // const files = fs.readdirSync(templateDir);
-    // for (const file of files.filter((f) => f !== "package.json")) {
-    //  write(root, file, templateDir);
-    // }
+    // git init
+    process.chdir(root);
+    await execShellCommand(`git init`);
+    process.chdir(cwd);
 
     // create package.json
     const pkg = fs.existsSync(path.join(root, `package.json`))
