@@ -1,7 +1,7 @@
 {
   "name": "@riktar/frontman",
   "description": "Opinionated CLI for automate frontend task",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": "Riccardo Tartaglia @riktar",
   "bin": {
     "frontman": "./bin/run"
