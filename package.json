@@ -48,6 +48,7 @@
     "@oclif/plugin-help": "^3.2.2",
     "@oclif/plugin-not-found": "^1.2.4",
     "chalk": "^2.4.2",
+    "degit": "^2.8.4",
     "handlebars": "^4.7.7",
     "inquirer": "^6.5.2",
     "npm-commands": "^1.1.0",

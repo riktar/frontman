@@ -11,6 +11,7 @@ const {
   emptyDir,
   isValidPackageName,
   toValidPackageName,
+  execShellCommand,
 } = require("../utils/fns");
 
 class InitCommand extends Command {
@@ -86,9 +87,9 @@ class InitCommand extends Command {
             choices: [
               {
                 name: `${chalk.bold.yellow(
-                  "Default App"
+                  "Simple SPA"
                 )} - Fast SPA using Vite, Tailwind, React Router, SWR and Recoil`,
-                value: "spa-base",
+                value: "https://github.com/riktar/frontman-simple-spa",
               },
             ],
           },
@@ -115,15 +116,17 @@ class InitCommand extends Command {
     this.log();
     const spinner = ora(`Scaffolding project in ${chalk.cyan(root)}`).start();
 
+    await execShellCommand(`npx degit ${template} ${root}`);
+
     // copy folder from template path to destination path
-    const files = fs.readdirSync(templateDir);
-    for (const file of files.filter((f) => f !== "package.json")) {
-      write(root, file, templateDir);
-    }
+    // const files = fs.readdirSync(templateDir);
+    // for (const file of files.filter((f) => f !== "package.json")) {
+    //  write(root, file, templateDir);
+    // }
 
     // create package.json
-    const pkg = fs.existsSync(path.join(templateDir, `package.json`))
-      ? require(path.join(templateDir, `package.json`))
+    const pkg = fs.existsSync(path.join(root, `package.json`))
+      ? require(path.join(root, `package.json`))
       : false;
     if (pkg) {
       pkg.name = isValidPackageName(targetDir)
