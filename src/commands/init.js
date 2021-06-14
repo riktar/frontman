@@ -91,6 +91,12 @@ class InitCommand extends Command {
                 )} - Fast SPA using Vite, Tailwind, React Router, SWR and Recoil`,
                 value: "https://github.com/riktar/frontman-simple-spa",
               },
+              {
+                name: `${chalk.bold.yellow(
+                  "Admin Panel SPA"
+                )} - Fast Panel SPA styled by React Tailwind Material`,
+                value: "https://github.com/riktar/frontman-admin-spa",
+              },
             ],
           },
         ])
